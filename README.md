@@ -71,4 +71,13 @@ more INSTALL.txt
    which ldmsd
  
   man ldmsd_controller
- 
+
+ module list
+module load gcc/13.2.0
+module load openblas/0.3.23
+module load papi/6.0.0
+module load openmpi/4.1.6
+
+mpirun --prefix /opt/openmpi-VERSION -n 4 a.out
+mpirun -np 16 ./xhpl
+mpirun --debug-daemons -np 16 ./xhpl
