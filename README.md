@@ -81,3 +81,56 @@ module load openmpi/4.1.6
 mpirun --prefix /opt/openmpi-VERSION -n 4 a.out
 mpirun -np 16 ./xhpl
 mpirun --debug-daemons -np 16 ./xhpl
+
+
+NEW 
+
+[walcius@blake ~]$ module list
+
+Currently Loaded Modules:
+  1) gcc/13.2.0   2) papi/6.0.0
+
+ 
+
+[walcius@blake ~]$ module load openblas/0.3.23
+[walcius@blake ~]$ module load openmpi/4.1.6
+[walcius@blake ~]$ module list
+
+Currently Loaded Modules:
+  1) gcc/13.2.0   2) papi/6.0.0   3) openblas/0.3.23   4) openmpi/4.1.6
+
+ 
+
+[walcius@blake ~]$ mpirun --version
+mpirun (Open MPI) 4.1.6
+
+Report bugs to http://www.open-mpi.org/community/help/
+[walcius@blake ~]$ nano mpi_test.c
+-bash: nano: command not found
+[walcius@blake ~]$ nano
+-bash: nano: command not found
+[walcius@blake ~]$ 
+[walcius@blake ~]$ nano mpi_test
+-bash: nano: command not found
+[walcius@blake ~]$ vim mpi_test.c
+[walcius@blake ~]$ mpicc -o mpi_test mpi_test.c
+[walcius@blake ~]$ mpirun -np 4 ./mpi_test
+--------------------------------------------------------------------------
+The library attempted to open the following supporting CUDA libraries,
+but each of them failed.  CUDA-aware support is disabled.
+libcuda.so.1: cannot open shared object file: No such file or directory
+libcuda.dylib: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.so.1: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.dylib: cannot open shared object file: No such file or directory
+If you are not interested in CUDA-aware support, then run with
+--mca opal_warn_on_missing_libcuda 0 to suppress this message.  If you are interested
+in CUDA-aware support, then try setting LD_LIBRARY_PATH to the location
+of libcuda.so.1 to get passed this issue.
+--------------------------------------------------------------------------
+Hello from rank 2 out of 4 processes!
+Hello from rank 0 out of 4 processes!
+Hello from rank 3 out of 4 processes!
+Hello from rank 1 out of 4 processes!
+[blake:3550496] 3 more processes have sent help message help-mpi-common-cuda.txt / dlopen failed
+[blake:3550496] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[walcius@blake ~]$ 
